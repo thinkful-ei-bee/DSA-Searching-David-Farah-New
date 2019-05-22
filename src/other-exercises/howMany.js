@@ -151,17 +151,29 @@ main();
 // indexes: 5, 8, 6, 7, -1
 // numbers: 12, 17, 14, 15
 
+function maxProfit(arr) {
+  let currentMaxProfit = 0;
+  let currentMaxValue = arr[arr.length - 1];
+  let currentMaxDay = 6;
+  let currentBuyDay = 6;
+  let currentSellDay = 6;
 
-//     14,19,15,27,25,79,90,91,89,35
+  for (let i = arr.length - 2; i >= 0; i--){
+    if (currentMaxValue - arr[i] > currentMaxProfit) {
+      currentMaxProfit = currentMaxValue - arr[i];
+      currentBuyDay = i;
+      currentSellDay = currentMaxDay;
+    } 
 
-// 8, 6, 5, 7, 10, 9, 11
+    if (arr[i] > currentMaxValue) {
+      currentMaxValue = arr[i];
+      currentMaxDay = i;
+    }
 
-                  105-Sat
-              97-Fri         123-Wed
-          97-Mon  98-Thu      121-Tue  128-Sun
+  }
+  return [currentBuyDay, currentSellDay];
+}
 
-          97, 97, 98, 105, 121, 123, 128
-          Mon, Fri, Thu, Sat, Tue, Wed, Sun
-
+console.log(maxProfit([128, 97, 121, 123, 98, 97, 105]));    
           
 
