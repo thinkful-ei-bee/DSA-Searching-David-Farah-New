@@ -19,6 +19,10 @@ function search(dataset, item, searchType) {
     count++;
     index = Math.floor((start + end) / 2);
     const val = dataset[index];
+    console.log(index);
+    if (val === undefined) {
+      return [count, 'not found'];
+    }
     if (val === item) {
       return [count, 'found']
     } else if (val < item) {
