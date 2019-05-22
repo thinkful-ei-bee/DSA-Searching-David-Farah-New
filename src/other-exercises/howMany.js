@@ -1,4 +1,5 @@
 const BST = require('./bst');
+const Queue = require('./queue');
 
 function binarySearch(array, value, start = 0, end = array.length) {
   // end = end === undefined ? array.length : end;
@@ -95,6 +96,23 @@ function treeTraversal(arr) {
   postOrderTree(bst)
 }
 
+function rankingOrder(tree) {
+  const queue = new Queue();
+  queue.enqueue(tree);
+  
+  while (queue.length) {
+    const node = queue.dequeue();
+    console.log(node.value);
+
+    if (node.left) {
+      queue.enqueue(node.left);
+    }
+
+    if (node.right) {
+      queue.enqueue(node.right);
+    }
+  }
+}
 
 function main() {
   const list = [3, 5, 6, 8, 11, 12, 14, 15, 17, 18];
@@ -110,7 +128,18 @@ function main() {
   //postOrderTree(postOrder);
 
   const randomList = [25, 15, 50, 10, 24, 35, 70, 4, 12, 18, 31, 44, 66, 90, 22];
-  treeTraversal(randomList)
+  treeTraversal(randomList);
+
+ const rankingOfficers = new BST();
+ rankingOfficers.insert(5, 'Captain Picard');
+ rankingOfficers.insert(3, 'Commander Riker');
+ rankingOfficers.insert(6, 'Commander Data');
+ rankingOfficers.insert(2, 'Lt. Cmdr. Worf');
+ rankingOfficers.insert(4, 'Lt. Cmdr. LaForge');
+ rankingOfficers.insert(8, 'Lt. Cmdr. Crusher');
+ rankingOfficers.insert(7, 'Lieutenant Selar');
+ rankingOfficers.insert(1, 'Lieutenant security-officer');
+ rankingOrder(rankingOfficers);
 }
 
 main();
