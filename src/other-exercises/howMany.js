@@ -1,3 +1,4 @@
+const BST = require('./bst');
 
 function binarySearch(array, value, start = 0, end = array.length) {
   // end = end === undefined ? array.length : end;
@@ -26,16 +27,6 @@ function findBook(library, deweyDec){
   // assuming deweyDec is unique
   const nums = library.map(arr => arr[0])
   return library[binarySearch(nums, deweyDec)]
-}
-
-class BST {
-  constructor (key = null, value = null, parent = null) {
-    this.key = key;
-    this.value = value;
-    this.parent = parent;
-    this.left = null;
-    this.right = null;
-  }
 }
 
 function postOrderBST(arr){
@@ -90,6 +81,21 @@ function postOrderTree(node) {
   console.log(node.key);
 }
 
+function treeTraversal(arr) {
+  const bst = new BST();
+  arr.forEach(num => bst.insert(num, num));
+
+  console.log('Pre order traversal:');
+  preOrderBST(bst)
+
+  console.log('Inorder traversal:');
+  inOrderBST(bst)
+
+  console.log('PostOrder traversal:');
+  postOrderTree(bst)
+}
+
+
 function main() {
   const list = [3, 5, 6, 8, 11, 12, 14, 15, 17, 18];
   // binarySearch(list, 8);
@@ -100,8 +106,11 @@ function main() {
   const postOrder = postOrderBST(postOrderList);
 
   // inOrderBST(postOrder);
-  preOrderBST(postOrder);
+  //preOrderBST(postOrder);
   //postOrderTree(postOrder);
+
+  const randomList = [25, 15, 50, 10, 24, 35, 70, 4, 12, 18, 31, 44, 66, 90, 22];
+  treeTraversal(randomList)
 }
 
 main();
